@@ -1,10 +1,10 @@
 #include <Servo.h>
 Servo servo;
 
-#define motor1Control 5    //right wheel
-#define motor2Control 7     // left wheel
-#define motor1ControlR 4   //right wheel reverse.
-#define motor2ControlR 6   // left wheel reverse
+#define motor1Control 4    //right wheel
+#define motor2Control 6     // left wheel
+#define motor1ControlR 5   //right wheel reverse.
+#define motor2ControlR 7   // left wheel reverse
 #define motor1Speed 11      //right wheel speed
 #define motor2Speed 10      // left wheel speed
 
@@ -56,7 +56,8 @@ class CarMove {
       digitalWrite(motor2ControlR, LOW);
       digitalWrite(motor1Control, HIGH);
       digitalWrite(motor2Control, HIGH);
-    }/*
+    }
+    /*
     void forward() {
       analogWrite(motor1Speed, maxSpeed);
       analogWrite(motor2Speed, maxSpeed2);
@@ -100,15 +101,31 @@ void setup() {
   digitalWrite(13,HIGH);
   Serial.begin(9600);   // here we initialize the seriel panel
   servo.attach(9);
-  servo.write(0);
+  servo.write(angle1);
   car.stop();
 }
 
 void loop(){
   remote= bluetooth();
-  car.backward();
-  
   /*
+  car.backward();
+  delay(2000);
+  car.stop();
+  delay(2000);
+  car.right();
+  delay(2000);
+  car.stop();
+  delay(2000);
+  car.left();
+  delay(2000);
+  car.stop();
+  delay(2000);
+  car.forward();
+  delay(2000);
+  car.stop();
+  delay(2000);
+  */
+  
   switch (remote){
     case 'f' :
      car.forward();
@@ -139,5 +156,5 @@ void loop(){
     default:
      car.stop();
      break;
-    }*/
+    }
   }
