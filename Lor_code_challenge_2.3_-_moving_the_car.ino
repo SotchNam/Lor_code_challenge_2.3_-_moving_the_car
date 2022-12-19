@@ -91,6 +91,39 @@ class CarMove {
 
 CarMove car;
 
+void controls(){
+  switch (remote){
+    case 'f' :
+     car.forward();
+     //Serial.println(remote);
+     break;
+    case 'b' :
+     car.backward();
+     //Serial.println(remote);
+     break;
+    case 'r' :
+     car.right();
+     //Serial.println(remote);
+     break;
+    case 'l': 
+     car.left();
+     //Serial.println(remote);
+     break;
+    case 's' :
+     car.stop();
+     //Serial.println(remote);
+     break;
+    case'o' :
+     servo.write(angle0);
+     break;
+    case'c' :
+     servo.write(angle1);
+     break;
+    default:
+     car.stop();
+     break;
+    }
+}
 
 void setup() {
   pinMode(motor1Control,OUTPUT);   //left motors forward
@@ -106,8 +139,9 @@ void setup() {
 }
 
 void loop(){
+/*
   remote= bluetooth();
-  /*
+  delay(3000);
   car.backward();
   delay(2000);
   car.stop();
@@ -125,36 +159,8 @@ void loop(){
   car.stop();
   delay(2000);
   */
+
+  //bt controls
+  controls();
   
-  switch (remote){
-    case 'f' :
-     car.forward();
-     Serial.println(remote);
-     break;
-    case 'b' :
-     car.backward();
-     Serial.println(remote);
-     break;
-    case 'r' :
-     car.right();
-     Serial.println(remote);
-     break;
-    case 'l': 
-     car.left();
-     Serial.println(remote);
-     break;
-    case 's' :
-     car.stop();
-     Serial.println(remote);
-     break;
-    case'o' :
-     servo.write(angle0);
-     break;
-    case'c' :
-     servo.write(angle1);
-     break;
-    default:
-     car.stop();
-     break;
-    }
   }
